@@ -14,7 +14,7 @@
 
 ```
 
-3. Open VS Code in the windows VM and connect to the linux VM using **Remote-SSH: Connect to Host..** and the same user name as step 1. 
+3. Open VS Code in the windows VM and connect to the linux VM using **Remote-SSH: Connect to Host..** and the same user name as step 1. Please note you need to install [VSCode remote extension ](https://code.visualstudio.com/docs/remote/remote-overview) for this option prior to this if you haven't done so already. 
 
 4. Open the config file `/usr/lib/kafka_2.12-3.3.1/config/connect-distributed.properties` using **File:Open** and Update event hub namespace and connection string and save.
 
