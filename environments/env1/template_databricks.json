@@ -238,7 +238,7 @@
           "defaultValue": "[format('/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Storage/storageAccounts/{2}', parameters('subscriptionId'),resourceGroup().name, parameters('blobAccountName'))]"
         },
         "fileuploaduri": {
-          "defaultValue": "https://raw.githubusercontent.com/Nivedha-govindan/testing/main/deploy.ps1",
+          "defaultValue": "https://raw.githubusercontent.com/CSALabsAutomation/azure-databricks/main/environments/env1/clusterDeploy.ps1",
           "type": "String",
           "metadata": {
               "description": "The URI of script file to upload blob container"
