@@ -101,57 +101,56 @@
     tar -xvzf hadoop-3.3.4.tar.gz 
     ```
     
-### Setup configuration files
+### Setup configuration files - There are 6 configurations to be modified.
 
-There are 6 modifications to be done on 6 different files.
 
-1. Modification 1 : 
-
-	a) Run the below command to open bashrc file.
+#### Modification 1 
+  
+ 1. Run the below command to open bashrc file.
+           
+    ```
+    sudo nano .bashrc
+    ```
+       
+ 2. Add the below lines at the end. Save[CTRL + S] the file and Quit[CTRL + X]. Also make sure HADOOP_HOME location is correctly given.
 	
-	       ```
-               sudo nano .bashrc
-	       ```
-
-        b) Add the below lines at the end. Save[CTRL + S] the file and Quit[CTRL + X]. Also make sure HADOOP_HOME location is correctly given.
+     ```
+     export HADOOP_HOME=/home/hdoop/hadoop-3.3.4
+     export HADOOP_INSTALL=$HADOOP_HOME
+     export HADOOP_MAPRED_HOME=$HADOOP_HOME
+     export HADOOP_COMMON_HOME=$HADOOP_HOME
+     export HADOOP_HDFS_HOME=$HADOOP_HOME
+     export YARN_HOME=$HADOOP_HOME
+     export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+     export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
+     export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native"
+     ```
 	
-	       ```
-	       export HADOOP_HOME=/home/hdoop/hadoop-3.3.4
-	       export HADOOP_INSTALL=$HADOOP_HOME
-	       export HADOOP_MAPRED_HOME=$HADOOP_HOME
-	       export HADOOP_COMMON_HOME=$HADOOP_HOME
-	       export HADOOP_HDFS_HOME=$HADOOP_HOME
-	       export YARN_HOME=$HADOOP_HOME
-	       export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
-	       export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
-	       export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native"
-	       ```
+ 3. Reload the modified code.
 	
-	c) Reload the modified code.
-	
-	       ```
-	       source  ~/.bashrc 
-	       ```
+     ```
+     source  ~/.bashrc 
+     ```
 	       
-	c) To check whether code is commited or not.
+ 4. To check whether code is commited or not.
 	  
-	       ```
-                cat .bashrc
-	       ```
+     ```
+     cat .bashrc
+     ```
      	
-2. Modification 2 
+#### Modification 2
 
-	a) Run the below command to edit the hadoop-env.sh file.
+ 1. Run the below command to edit the hadoop-env.sh file.
 
-		```
-		sudo nano $HADOOP_HOME/etc/hadoop/hadoop-env.sh
-		```
+     ```
+     sudo nano $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+     ```
 	
-	b) Add the below lines for adding the Java path, save it and exit .
+ 2. Add the below lines for adding the Java path, save it and exit .
 	
-		```
-		export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-		```
+     ```
+     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+     ```
 	
 3. Modification 3 
 
