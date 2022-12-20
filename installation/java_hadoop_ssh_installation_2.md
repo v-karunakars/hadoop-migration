@@ -60,6 +60,48 @@
     chmod 0600 ~/.ssh/authorized_keys
     ```
     
+7. Connect to ssh localhost
+
+    ```
+    ssh localhost
+    ```
+
+8. Navigate to existing user.
+
+    ```
+    su - hadoopuser  
+    ```
+    
+    > Enter password when it prompts .
+    
+9. Adding new user `hdoop` to sudo group.
+
+    ```
+    sudo adduser hdoop sudo
+    ```
+    
+10.	Login to individual `hdoop` user :  
+
+    ```
+    su - hdoop
+    ```
+
+    
+### Hadoop Installation
+
+1. Downloading Hadoop
+
+    ```
+    wget https://downloads.apache.org/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz 
+    ```
+    
+2. Extract 
+
+    ```
+    tar -xvzf hadoop-3.3.4.tar.gz 
+    ```
+
+
     
     
     
