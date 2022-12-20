@@ -22,25 +22,25 @@
  
 ###    Create and setup SSH certificates
 
-1. Install the SSH Service on Ubuntu.
+1. Installing SSH for creating connection between Hadoop and Linux Machine.
 
     ```
     sudo apt install openssh-server openssh-client -y  
     ```
 
-2. Adding a new individual user as `hdoop`
+2. Adding a new individual user as `hdoop` and this user will use the Hadoop in the system.
 
     ```
    sudo adduser hdoop 
     ```
 
-3. Login to the new user
+3. Login to the new user `hdoop` and enter password when it promts for it.
 
     ```
     su - hdoop
     ```
 
-4. SSH key generation 
+4. Generating the SSH key for the connection between local machine and Hadoop
 
     ```
     ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
@@ -48,19 +48,19 @@
     
     > During the key generation, --------------  needed explanation ------------------
 
-5. Authorizing the key  
+5. Authorizing the key for connecting new user to the Hadoop.
 
     ```
     cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
     ```
     
-6. Change the permission of the key 
+6. Changing permissions of the authorized key file by using chmod.
 
     ```
     chmod 0600 ~/.ssh/authorized_keys
     ```
     
-7. Connect to ssh localhost
+7. Connect to SSH localhost by creating connection to the local host so that the system works on server.
 
     ```
     ssh localhost
@@ -80,7 +80,7 @@
     sudo adduser hdoop sudo
     ```
     
-10.	Login to individual `hdoop` user :  
+10. Login to individual `hdoop` user :  
 
     ```
     su - hdoop
@@ -107,71 +107,146 @@ There are 6 modifications to be done on 6 different files.
 
 1. Modification 1 : 
 
-        a)	Open bashrc file.
-                sudo nano .bashrc
+	a) Run the below command to open bashrc file.
+	
+	       ```
+               sudo nano .bashrc
+	       ```
 
-        b)	After the last line , add the following .Make sure you save the file . Also make sure that the  home location is correct.																																																																																																																																																																		
-
-
-
-        c)	To check whether code is commited or not.
+        b) Add the below lines at the end. Save[CTRL + S] the file and Quit[CTRL + X]. Also make sure HADOOP_HOME location is correctly given.
+	
+	       ```
+	       export HADOOP_HOME=/home/hdoop/hadoop-3.3.4
+	       export HADOOP_INSTALL=$HADOOP_HOME
+	       export HADOOP_MAPRED_HOME=$HADOOP_HOME
+	       export HADOOP_COMMON_HOME=$HADOOP_HOME
+	       export HADOOP_HDFS_HOME=$HADOOP_HOME
+	       export YARN_HOME=$HADOOP_HOME
+	       export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+	       export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
+	       export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native"
+	       ```
+	
+	c) Reload the modified code.
+	
+	       ```
+	       source  ~/.bashrc 
+	       ```
+	       
+	c) To check whether code is commited or not.
+	  
+	       ```
                 cat .bashrc
-d)	Reload the modified code : source  ~/.bashrc 
-             Modification 2 :
-a)	Now run this command to modify the hadoop-env.sh file. 
-sudo nano $HADOOP_HOME/etc/hadoop/hadoop-env.sh
-b)	Add below line somewhere  and save the file.
+	       ```
+     	
+2. Modification 2 
 
+	a) Run the below command to edit the hadoop-env.sh file.
 
+		```
+		sudo nano $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+		```
+	
+	b) Add the below lines for adding the Java path, save it and exit .
+	
+		```
+		export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+		```
+	
+3. Modification 3 
 
+	a)  Run the below command to edit the core-site.xml file. 
 
+		```
+		sudo nano $HADOOP_HOME/etc/hadoop/core-site.xml
+		```
+		
+	b)  Add the following code within configuration tags, save it and exit .	
+	
+		```
+		<property>
+		<name>hadoop.tmp.dir</name>
+		<value>/home/hdoop/tmpdata</value>
+		<description>A base for other temporary directories.</description>
+		</property>
+		<property>
+		<name>fs.default.name</name>
+		<value>hdfs://localhost:9000</value>
+		<description>bla bla</description>
+		</property>
 
+		```
+																				Modification 4 :
+																				
+	a)  Run the below command to edit the hdfs-site.xml file. 
+	
+		```
+		sudo nano $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+		```
+		
+	b)  Add the following code within configuration tags, save it and exit .
+		
+		```
+		<property>
+		<name>dfs.data.dir</name>
+		<value>home/hdoop/dfsdata/namenode</value>
+		</property>
+		<property>
+		<name>dfs.data.dir</name>
+		<value>home/hdoop/dfsdata/datanode</value>
+		</property>
+		```
+		
+Modification 5 :
 
-
-
-
-Modification 3 :
-a)	Now run this command to modify the core-site.xml file. 
-sudo nano $HADOOP_HOME/etc/hadoop/core-site.xml
-b)	Add the following code within configuration tags.									
-																																																																																																																																																																																																																			
-          Modification 4 :
-a)	Now run this command to modify the hdfs-site.xml file. 
-sudo nano $HADOOP_HOME/etc/hadoop/hdfs-site.xml
-b)	Add the following code within configuration tags. [ <configuration>  </configuration> ]																																																																																																																																																																																			
-        Modification 5 :
-a)	Now run this command to modify the mapred-site.xml file. 
-               	sudo nano $HADOOP_HOME/etc/hadoop/mapred-site.xml
-b)	Add the following code within configuration tags. [ <configuration>  </configuration> ]	
-
-																																																																								
-        	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	a)  Run the below command to edit the mapred-site.xml file. 
+	
+		```
+		sudo nano $HADOOP_HOME/etc/hadoop/mapred-site.xml
+		```
+		
+	b)  Add the following code within configuration tags, save it and exit .
+		
+		```
+		<property>
+		<name>mapreduce.framework.name</name>
+		<value>yarn</value>
+		</property
+		```
+		
 Modification 6 :
-a)	Now run this command to modify the yarn-site.xml file. 
-             		  sudo nano $HADOOP_HOME/etc/hadoop/yarn-site.xml
-b)	Add the following code within configuration tags. [ <configuration>  </configuration> ]	
 
-																																																																																																																															
+	a)  Run the below command to edit the yarn-site.xml  file. 
+	
+		```
+		sudo nano $HADOOP_HOME/etc/hadoop/yarn-site.xml
+		```
+		
+	b)  Add the following code within configuration tags, save it and exit .
+		
+		```		
+		<property>
+		<name>yarn.nodemanager.aux-services</name>
+		<value>mapreduce_shuffel</value>
+		</property>
+		<property>
+		<name>yarn.nodemanager.aux-services.mapreduce_shuffel.class</name>
+		<value>org.apache.hadoop.mapred.ShuffleHandler</value>
+		</property>
+		<property>
+		<name>yarn.resourcemanager.hostname</name>
+		<value>127.0.0.1</value>
+		</property>
+		<property>
+		<name>yarn.acl.enable</name>
+		<value>0</value>
+		</property>
+		<property>
+		<name>yarn.nodemanager.env-whitelist</name>
+		<value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME</value>
+		</property>
+
+		```
 
 
 
