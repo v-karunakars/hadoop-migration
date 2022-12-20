@@ -75,7 +75,7 @@ param windowsVmOSVersion string = '2022-datacenter-azure-edition'
 param windowsVmSize string = 'Standard_D2s_v5'
 
 @description('Blob URI')
-param blobUri string = ''
+param blobUri string = 'https://csalabsshrdstrg1.blob.core.windows.net/cloudacademy/databricks/linux_vm_v1_0.vhd'
 
 var vnetAddressPrefix = '10.1.0.0/16'
 var linuxVmSubnetAddressPrefix = '10.1.0.0/24'
