@@ -100,6 +100,126 @@
     ```
     tar -xvzf hadoop-3.3.4.tar.gz 
     ```
+    
+### Setup configuration files
+
+There are 6 modifications to be done on 6 different files.
+
+1. Modification 1 : 
+
+        a)	Open bashrc file.
+                sudo nano .bashrc
+
+        b)	After the last line , add the following .Make sure you save the file . Also make sure that the  home location is correct.																																																																																																																																																																		
+
+
+
+        c)	To check whether code is commited or not.
+                cat .bashrc
+d)	Reload the modified code : source  ~/.bashrc 
+             Modification 2 :
+a)	Now run this command to modify the hadoop-env.sh file. 
+sudo nano $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+b)	Add below line somewhere  and save the file.
+
+
+
+
+
+
+
+
+
+Modification 3 :
+a)	Now run this command to modify the core-site.xml file. 
+sudo nano $HADOOP_HOME/etc/hadoop/core-site.xml
+b)	Add the following code within configuration tags.									
+																																																																																																																																																																																																																			
+          Modification 4 :
+a)	Now run this command to modify the hdfs-site.xml file. 
+sudo nano $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+b)	Add the following code within configuration tags. [ <configuration>  </configuration> ]																																																																																																																																																																																			
+        Modification 5 :
+a)	Now run this command to modify the mapred-site.xml file. 
+               	sudo nano $HADOOP_HOME/etc/hadoop/mapred-site.xml
+b)	Add the following code within configuration tags. [ <configuration>  </configuration> ]	
+
+																																																																								
+        	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Modification 6 :
+a)	Now run this command to modify the yarn-site.xml file. 
+             		  sudo nano $HADOOP_HOME/etc/hadoop/yarn-site.xml
+b)	Add the following code within configuration tags. [ <configuration>  </configuration> ]	
+
+																																																																																																																															
+
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+Step 6 : After  6  modifications , run the below commands one-by-one .
+a)	Come out of your Individual hadoop user environment.
+logout
+b)	Start the SSH 
+sudo service ssh start 
+c)	To check the status of localhost :
+sudo service ssh status
+d)	Now navigate into individual user
+su – hdoop
+e)	Check if localhost works or not
+ssh localhost 
+f)	To Format the New Hadoop File system
+hdfs namenode -format
+g)	Navigating into /sbin.
+cd ~/hadoop-3.3.4/sbin
+h)	Starting dfs
+./start-dfs.sh
+i)	Starting YARN.
+./start-yarn.sh
+j)	Checking daemons
+jps
+k)	Create HADOOP HOME
+hadoop fs -mkdir -p /user/bhatshreya/
+l)	Checking HDFS Web UI on any browser.
+http://localhost:9870
+m)	Checking whether hadoop commands are running or not.
+hdfs dfs -ls /
+n)	Now try copying the file from local to hdfs path. [ Make sure you create any empty file inside /home/hadoopuser/ ]
+hdfs dfs -put /home/hadoopuser/shreya.txt / 
+o)	Check if the file is copied or not .
+hdfs dfs -ls /
+
 
 
     
