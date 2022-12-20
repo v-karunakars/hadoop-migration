@@ -1,6 +1,6 @@
 #    Steps for installing Java, Hadoop AND SSH
 
-###    Java Installation 
+##	Java Installation 
 
 1. Open the Ubuntu terminal and update the package repository to ensure you download the latest software version.
 
@@ -20,7 +20,7 @@
     java -version    
     ```
  
-###    Create and setup SSH certificates
+##    Create and setup SSH certificates
 
 1. Installing SSH for creating connection between Hadoop and Linux Machine.
 
@@ -46,7 +46,7 @@
     ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
     ```
     
-    > During the key generation, --------------  needed explanation ------------------
+    > During the key generation, --------------  needed explanation ----yet to addd--------------
 
 5. Authorizing the key for connecting new user to the Hadoop.
 
@@ -85,23 +85,26 @@
     ```
     su - hdoop
     ```
+    > Enter password when it prompts .
 
     
-### Hadoop Installation
+##	Hadoop Installation
 
-1. Downloading Hadoop
+1. Downloading Hadoop by using wget command in a specified location.
 
     ```
     wget https://downloads.apache.org/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz 
     ```
     
-2. Extract 
+2. Extracting the downloaded tar file in Linux machine by using tar command.
 
     ```
     tar -xvzf hadoop-3.3.4.tar.gz 
     ```
     
-### Setup configuration files - There are 6 configurations to be modified.
+##	Setup configuration files 
+
+- There are 6 modifications to be done.
 
 
 #### Modification 1 
@@ -152,147 +155,188 @@
      export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
      ```
 	
-3. Modification 3 
+#### Modification 3 
 
-	a)  Run the below command to edit the core-site.xml file. 
+ 1. Run the below command to edit the core-site.xml file. 
 
-		```
-		sudo nano $HADOOP_HOME/etc/hadoop/core-site.xml
-		```
+     ```
+     sudo nano $HADOOP_HOME/etc/hadoop/core-site.xml
+     ```
 		
-	b)  Add the following code within configuration tags, save it and exit .	
+ 2. Add the following code within configuration tags, save it and exit .	
 	
-		```
-		<property>
-		<name>hadoop.tmp.dir</name>
-		<value>/home/hdoop/tmpdata</value>
-		<description>A base for other temporary directories.</description>
-		</property>
-		<property>
-		<name>fs.default.name</name>
-		<value>hdfs://localhost:9000</value>
-		<description>bla bla</description>
-		</property>
-
-		```
-																				Modification 4 :
+     ```
+     <property>
+     <name>hadoop.tmp.dir</name>
+     <value>/home/hdoop/tmpdata</value>
+     <description>A base for other temporary directories.</description>
+     </property>
+     <property>
+     <name>fs.default.name</name>
+     <value>hdfs://localhost:9000</value>
+     <description>bla bla</description>
+     </property>
+     ```
+																		
+#### Modification 4
 																				
-	a)  Run the below command to edit the hdfs-site.xml file. 
+1. Run the below command to edit the hdfs-site.xml file. 
 	
-		```
-		sudo nano $HADOOP_HOME/etc/hadoop/hdfs-site.xml
-		```
+     ```
+     sudo nano $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+     ```
+2. Add the following code within configuration tags, save it and exit .
 		
-	b)  Add the following code within configuration tags, save it and exit .
+     ```
+     <property>
+     <name>dfs.data.dir</name>
+     <value>home/hdoop/dfsdata/namenode</value>
+     </property>
+     <property>
+     <name>dfs.data.dir</name>
+     <value>home/hdoop/dfsdata/datanode</value>
+     </property>
+     ```
 		
-		```
-		<property>
-		<name>dfs.data.dir</name>
-		<value>home/hdoop/dfsdata/namenode</value>
-		</property>
-		<property>
-		<name>dfs.data.dir</name>
-		<value>home/hdoop/dfsdata/datanode</value>
-		</property>
-		```
-		
-Modification 5 :
+#### Modification 5 
 
-	a)  Run the below command to edit the mapred-site.xml file. 
+1. Run the below command to edit the mapred-site.xml file. 
 	
-		```
-		sudo nano $HADOOP_HOME/etc/hadoop/mapred-site.xml
-		```
+     ```
+     sudo nano $HADOOP_HOME/etc/hadoop/mapred-site.xml
+     ```
 		
-	b)  Add the following code within configuration tags, save it and exit .
+2. Add the following code within configuration tags, save it and exit .
 		
-		```
-		<property>
-		<name>mapreduce.framework.name</name>
-		<value>yarn</value>
-		</property
-		```
+     ```
+     <property>
+     <name>mapreduce.framework.name</name>
+     <value>yarn</value>
+     </property
+     ```
 		
-Modification 6 :
+#### Modification 6 
 
-	a)  Run the below command to edit the yarn-site.xml  file. 
+1. Run the below command to edit the yarn-site.xml  file. 
 	
-		```
-		sudo nano $HADOOP_HOME/etc/hadoop/yarn-site.xml
-		```
+   ```
+   sudo nano $HADOOP_HOME/etc/hadoop/yarn-site.xml
+   ```
 		
-	b)  Add the following code within configuration tags, save it and exit .
+2. Add the following code within configuration tags, save it and exit .
 		
-		```		
-		<property>
-		<name>yarn.nodemanager.aux-services</name>
-		<value>mapreduce_shuffel</value>
-		</property>
-		<property>
-		<name>yarn.nodemanager.aux-services.mapreduce_shuffel.class</name>
-		<value>org.apache.hadoop.mapred.ShuffleHandler</value>
-		</property>
-		<property>
-		<name>yarn.resourcemanager.hostname</name>
-		<value>127.0.0.1</value>
-		</property>
-		<property>
-		<name>yarn.acl.enable</name>
-		<value>0</value>
-		</property>
-		<property>
-		<name>yarn.nodemanager.env-whitelist</name>
-		<value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME</value>
-		</property>
+   ```		
+   <property>
+   <name>yarn.nodemanager.aux-services</name>
+   <value>mapreduce_shuffel</value>
+   </property>
+   <property>
+   <name>yarn.nodemanager.aux-services.mapreduce_shuffel.class</name>
+   <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+   </property>
+   <property>
+   <name>yarn.resourcemanager.hostname</name>
+   <value>127.0.0.1</value>
+   </property>
+   <property>
+   <name>yarn.acl.enable</name>
+   <value>0</value>
+   </property>
+   <property>
+   <name>yarn.nodemanager.env-whitelist</name>
+   <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME</value>
+   </property>
+   ```
 
-		```
+After all 6 modifications, follow the below instrutions.
 
+1. Logout from your individual user.
 
+   	```
+	logout
+	```
+2. Start the SSH 
 
----------------------------------------------------------------------------------------------------------------------------
+	```
+	sudo service ssh start 
+	```
 
+3. To check the status of localhost 
 
+	```
+	sudo service ssh status
+	```
+	
+4. Now navigate into individual user
 
+	```
+	su – hdoop
+	```
 
+5. Check if localhost works or not
 
+	```
+	ssh localhost 
+	```
 
+6. To Format the New Hadoop File system
 
+	```
+	hdfs namenode -format
+	```
+	
+7. Navigate to /sbin.
 
+	```
+	cd ~/hadoop-3.3.4/sbin
+	```
+	
+8. Starting dfs
 
+	```
+	./start-dfs.sh
+	```
+	
+9. Starting YARN.
 
+	```
+	./start-yarn.sh
+	```
+10. Checking daemons
 
+	```
+	jps
+	```
 
-Step 6 : After  6  modifications , run the below commands one-by-one .
-a)	Come out of your Individual hadoop user environment.
-logout
-b)	Start the SSH 
-sudo service ssh start 
-c)	To check the status of localhost :
-sudo service ssh status
-d)	Now navigate into individual user
-su – hdoop
-e)	Check if localhost works or not
-ssh localhost 
-f)	To Format the New Hadoop File system
-hdfs namenode -format
-g)	Navigating into /sbin.
-cd ~/hadoop-3.3.4/sbin
-h)	Starting dfs
-./start-dfs.sh
-i)	Starting YARN.
-./start-yarn.sh
-j)	Checking daemons
-jps
-k)	Create HADOOP HOME
-hadoop fs -mkdir -p /user/bhatshreya/
-l)	Checking HDFS Web UI on any browser.
-http://localhost:9870
-m)	Checking whether hadoop commands are running or not.
-hdfs dfs -ls /
-n)	Now try copying the file from local to hdfs path. [ Make sure you create any empty file inside /home/hadoopuser/ ]
-hdfs dfs -put /home/hadoopuser/shreya.txt / 
-o)	Check if the file is copied or not .
-hdfs dfs -ls /
+11. Create HADOOP HOME
+
+	```
+	hadoop fs -mkdir -p /user/myfolder/
+	```
+	
+12. Checking HDFS Web UI on any browser.
+
+	```
+	http://localhost:9870
+	```
+	
+13. Checking whether hadoop commands are running or not.
+
+	```
+	hdfs dfs -ls /
+	```
+	
+14. Now try copying the file from local to hdfs path. [ Make sure you create any empty file inside /home/hadoopuser/ ]
+
+	```
+	hdfs dfs -put /home/hadoopuser/example.txt / 
+	```
+	
+15. Check if the file is copied or not .
+
+	```
+	hdfs dfs -ls /
+	```
 
 
 
