@@ -115,7 +115,7 @@
     sudo nano .bashrc
     ```
        
- 2. Add the below lines at the end. Save[CTRL + S] the file and Quit[CTRL + X]. Also make sure HADOOP_HOME location is correctly given.
+ 2. Add the below lines at the end. Save[CTRL + S] the file and Quit[CTRL + X]. Also make sure HADOOP_HOME path is correctly given.
 	
      ```
      export HADOOP_HOME=/home/hdoop/hadoop-3.3.4
