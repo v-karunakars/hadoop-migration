@@ -1,6 +1,6 @@
 #    Steps for installing Kafka
 
-1.  Navigate to your individual user.[ hdoop ] 
+1. Open the WSL [Ubuntu] terminal and navigate to your individual user.[ hdoop ] 
 
     ```
     su - hdoop
