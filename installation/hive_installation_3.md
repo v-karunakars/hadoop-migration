@@ -19,7 +19,7 @@
    sudo nano .bashrc
    ```
    
-4.	Add the hive path in bashrc file.
+4.	Add the below lines to configure Hive path at the end. Save[CTRL + S] the file and Quit[CTRL + X]. Also make sure HIVE_HOME path is correctly given
 
     ```
     export HIVE_HOME=/home/hdoop/apache-hive-3.1.2-bin
