@@ -1,4 +1,4 @@
-#    Steps for installing Java, Hadoop AND SSH
+#    Steps for installing Java, Hadoop and SSH
 
 ##	Java Installation 
 
