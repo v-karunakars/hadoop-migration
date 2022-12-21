@@ -1,7 +1,7 @@
 #    Steps for installing Hive 
 
 
-1. Downloading Hive by using wget command in a specified location.
+1. Open the WSL [Ubuntu] terminal and download Hive by using wget command in a specified location.
  
    ```
    wget https://downloads.apache.org/hive/hive-3.1.2/apache-hive-3.1.2-bin.tar.gz
