@@ -1,6 +1,8 @@
 #    Steps for installing Hive 
 
 
+To install Hive, you need to have Hadoop installed and SSH server running. To know more refer the link [ Hadoop Installation steps](../installation/2_java_hadoop_ssh_installation.md) for installation.
+
 1. Open the WSL [Ubuntu] terminal and navigate to your individual user.[ hdoop ] 
 
     ```
