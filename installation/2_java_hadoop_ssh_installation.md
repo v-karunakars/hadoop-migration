@@ -2,7 +2,7 @@
 
 ##	Java Installation 
 
-1. Open the Ubuntu terminal and update the package repository to ensure you download the latest software version.
+1. Open the WSL \[Ubuntu] terminal and update the package repository to ensure you download the latest software version.
 
     ```
     sudo apt update  
