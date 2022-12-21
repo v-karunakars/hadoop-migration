@@ -76,7 +76,7 @@ To install Hive, you need to have Hadoop installed and SSH server running. To kn
     schematool -initSchema -dbType derby
     ```
     
-12. enter into hive interface
+12. Enter into hive interface
 
     ```
     hive
