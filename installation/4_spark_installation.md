@@ -1,6 +1,6 @@
-#    Steps for installing SPARK 
+#    Steps for installing Spark
 
-1.	Navigate to your individual user.[ hdoop ] 
+1.  Navigate to your individual user.[ hdoop ] 
 
     ```
     su - hdoop
