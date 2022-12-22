@@ -28,11 +28,13 @@
     sudo apt install openssh-server openssh-client -y  
     ```
 
-2. Adding a new individual user as `hdoop` and this user will use the Hadoop in the system.
+2. Adding a new individual user as `hdoop` and this user will use the Hadoop in the system. 
 
     ```
    sudo adduser hdoop 
     ```
+    
+   > Make sure you set the password as **`hadoop123`** and you will be using same password whenever you login to `hdoop` user. 
 
 3. Login to the new user `hdoop` and enter password when it promts for it.
 
