@@ -317,12 +317,6 @@ After all 6 modifications, follow the below instrutions.
 	jps
 	```
 
-11. Create HADOOP HOME
-
-	```
-	hadoop fs -mkdir -p /user/myfolder/
-	```
-	
 12. Checking HDFS Web UI on any browser.
 
 	```
@@ -334,8 +328,26 @@ After all 6 modifications, follow the below instrutions.
 	```
 	hdfs dfs -ls /
 	```
+
+14. Navigate to your group user.
+
+	```
+	su - hadoopuser
+	```
+
+15. Create an empty file inside ``/home/hadoopuser/``
+
+	```
+	mkdir example.txt
+	```
+
+16. Again login to ``hdoop`` user 
+
+	```
+	su - hdoop
+	```
 	
-14. Now try copying the file from local to hdfs path. [ Make sure you create any empty file inside /home/hadoopuser/ ]
+18. Now try copying the file from local to hdfs path. 
 
 	```
 	hdfs dfs -put /home/hadoopuser/example.txt / 
