@@ -40,12 +40,18 @@ To install Hive, you need to have Hadoop installed and SSH server running. To kn
     source .bashrc
     ```
     
-6.	Adding the Hadoop path to Hive
+6.	Run the below command to edit ``hive-config.sh`` file.
   
     ```
     sudo nano $HIVE_HOME/bin/hive-config.sh
     ```
+    
+7.   Add the below lines to configure Hadoop path.
 
+     ```
+     export HADOOP_HOME=/home/hdoop/hadoop-3.3.4
+     ```
+     
 7.  Create the tmp directory to store the result of query in directory 
 
     ```
