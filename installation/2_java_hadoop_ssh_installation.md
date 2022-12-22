@@ -46,7 +46,7 @@
     ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
     ```
     
-    > During the key generation, --------------  needed explanation ----yet to addd--------------
+    
 
 5. Authorizing the key for connecting new user to the Hadoop.
 
