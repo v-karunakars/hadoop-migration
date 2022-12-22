@@ -255,7 +255,14 @@ After all 6 modifications, follow the below instrutions.
    	```
 	logout
 	```
-2. Start the SSH 
+	
+2. Navigate to your existing user ( hadoopuser).
+
+	```
+	su - hadoopuser
+	```
+	
+4. Start the SSH 
 
 	```
 	sudo service ssh start 
