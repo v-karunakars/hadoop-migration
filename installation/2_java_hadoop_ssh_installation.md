@@ -277,7 +277,7 @@ After all 6 modifications, follow the below instrutions.
 4. Now navigate into individual user
 
 	```
-	su – hdoop
+	su - hdoop
 	```
 
 5. Check if localhost works or not
